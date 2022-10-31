@@ -191,35 +191,38 @@
     </section>
     <section class="bg-light p-3" id="contactme-section">
       <div class="container">
+        <div style="text-align:center">
+          <h2>Contact Me</h2>
+        </div>
         <div class="row">
           <div class="col-md-12">
-            <h2 class="text-center">Contact me</h2>
-            <form>
+            <form id="submit-form" action="">
               <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-
-              <div>
-                <label for="Comments=" class="form-label">Comments</label>
-                <textarea type="Comments" class="form-control" rows = "6" cols="30" placeholder="Enter your message here...">
-                </textarea>
-              </div>
-
+              <label for="fname" class="form-label">Name</label>
+              <input type="text" class="form-control" id="fname" name="name" placeholder="Your Name..">
+            </div>
+            <div class="mb-3">
+              <label for="lname" class="form-label">Email</label>
+              <input type="text" id="lname" class="form-control" name="email" placeholder="Your Email..">
+            </div>
+            <div class="mb-3">
+              <label for="country">Country</label>
+              <select id="country" name="Country">
+                <option value="canada">Canada</option>
+                <option value="australia">Australia</option>
+                <option value="canada">India</option>
+                <option value="usa">USA</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label">Subject</label>
+              <textarea id="subject" class="form-control" name="message" rows = "4" cols="30" placeholder="Write something.."></textarea>
+            </div>
               <div class="form text-center">
-              <button type="submit" class="btn btn-primary text-center">Submit</button>
-              </div>
-
+                <button type="submit" class="btn btn-primary text-center">Submit</button>
+                </div>
             </form>
+
           </div>
         </div>
       </div>
@@ -238,5 +241,23 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/354fc76406.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $("#submit-form").submit((e)=>{ 
+          e.preventDefault()
+          $.ajax({
+              url:"https://script.google.com/macros/s/AKfycbzFl4VRhhL91QZlxrCJXclpv3WHNGHIvcZbVxAzXkbicAUxjGYXAOwX09GhwdCCvCCHCg/exec",
+              data:$("#submit-form").serialize(),
+              method:"POST",
+              success:function (response){
+              alert("Form submitted successfully")
+              window.location.reload()
+              },
+              error:function(err) {
+                alert("Form submitted not  successfully")
+               }
+      })
+    })
+  </script>
   </body>
 </html>
